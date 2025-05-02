@@ -12,3 +12,15 @@ flowchart TD
     n4 --> n9["builder.* (format specified at package.json)"]
     n1@{ shape: text}
 ```
+
+### In ```package.json```
+
+```mermaid
+---
+config:
+  layout: dagre
+---
+flowchart TD
+    n1["package.json"] --> n2["builder_type"] & n3["where"] & n4["version"] & n5["name"] & n6["author"] & n7["author_email"] & n8["mantainer_email"] & n9["license"]
+    n1@{ shape: text}
+```
