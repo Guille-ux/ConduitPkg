@@ -8,8 +8,7 @@ config:
   layout: dagre
 ---
 flowchart TD
-    n1["Parent Dir"] --> n2["package.json"] & n3["src"] & n4["build"] & n5["LICENSE.txt"] & n6["README.md"]
-    n4 --> n9["builder.* (format specified at package.json)"]
+    n1["Parent Dir"] --> n2["package.json"] & n3["src"] & n5["LICENSE.txt"] & n6["README.md"] & n9["builder.zl"]
     n1@{ shape: text}
 ```
 
@@ -21,6 +20,6 @@ config:
   layout: dagre
 ---
 flowchart TD
-    n1["package.json"] --> n2["builder_type"] & n4["version"] & n5["name"] & n6["author"] & n7["author_email"] & n8["mantainer_email"] & n9["license"]
+    n1["package.json"] --> & n4["version"] & n5["name"] & n6["author"] & n7["author_email"] & n8["mantainer_email"] & n9["license"]
     n1@{ shape: text}
 ```

@@ -2,12 +2,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-template = {
-    "builder_type":"zl",
+template = { # there isn't builder_type because this runs the builder with zynk-lite
     "version":"0.0.1",
     "name":"",
     "author":"",
     "author_email":"",
     "mantainer_email":"",
-    "license":"GPL-3.0-or-later"
+    "license":"GPL-3.0-or-later",
+    "dependies":[]
 }
