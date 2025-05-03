@@ -4,7 +4,7 @@
 
 import json
 import os
-import urllib
+from urllib.request import urlopen
 import pathlib
 
 def get_repos():
@@ -13,3 +13,15 @@ def get_repos():
     with open(repos_lists_path, "r") as f:
         repos_lists = json.load(f)
     return repos_lists
+
+def is_in_repo(repo_url, name):
+    data = get_pkg_list(repo_url)
+    if name in data.keys():
+        return True
+    return False
+
+def get_pkg_list(repo_url):
+    with urlopen(repo_url) as request:
+        response = request.decode()
+    data = json.loads(response)
+    return data
