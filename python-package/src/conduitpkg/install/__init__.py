@@ -2,5 +2,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from . import extracting as extr
-from . import compress as comp
+from . import install_pkg as get_pkg
+from . import dependencies
+from . import search_packet as search_pkg
