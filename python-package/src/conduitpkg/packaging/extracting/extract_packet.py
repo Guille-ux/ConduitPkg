@@ -9,7 +9,7 @@ from zynk_lite import interpreter
 
 def extract(name):
     user_root = os.path.expanduser("~")
-    packet_path = pathlib.Path.joinpath(user_root, name)
+    packet_path = pathlib.Path.joinpath(user_root, ".conduitpkg", name)
     shutil.unpack_archive(name+".zip", packet_path)
     os.chdir(packet_path)
     intp = interpreter.ZynkLInterpreter()
