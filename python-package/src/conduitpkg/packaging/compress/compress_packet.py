@@ -13,7 +13,17 @@ def compress():
             name = json.load(f)["name"]
     except Exception:
         print("[!] Not in a package directory [!]")
-    os.mkdir("dist")
-    os.mkdir(f"dist/{name}")
+    try:
+        os.mkdir("dist")
+    except Exception:
+        pass
     dist_path=pathlib.Path.joinpath("dist", name)
-    shutil.copy("package.json", pathlib.Path.joinpath("dist", name))
+    if name in os.listdir("dist"):
+        shutil.rmtree(dist_path)
+    os.mkdir(dist_path)
+    shutil.copy("package.json", dist_path)
+    shutil.copytree("src", dist_path)
+    shutil.copy("builder.zl", dist_path)
+    shutil.copy("LICENSE.txt", dist_path)
+    shutil.copy("README.md", dist_path)
+    shutil.make_archive(dist_path, "zip", dist_path+".zip")

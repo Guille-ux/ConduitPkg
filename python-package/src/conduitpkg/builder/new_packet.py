@@ -25,4 +25,5 @@ def new(name):
     with open("LICENSE.txt") as f:
         f.write(gpl_license.template)
         f.write(copyright_header)
-    
+    with open("README.md", "w") as f:
+        f.write(f"""# {name}""")
