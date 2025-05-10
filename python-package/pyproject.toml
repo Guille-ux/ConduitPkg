@@ -7,7 +7,7 @@ name = "conduitpkg"
 dynamic = ["version"]
 description = 'A simple packet manager, works with github to upload packets.'
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.7"
 license = "GPL-3.0-or-later"
 keywords = []
 authors = [
