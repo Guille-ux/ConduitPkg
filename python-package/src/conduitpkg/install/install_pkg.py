@@ -42,9 +42,18 @@ def get_packet(name, protocol):
     # primero averiguar donde esta el paquete, y despues descargarlo
     if protocol == "git":
         print("[+] Cloning [+]")
-        Repo.clone_from(pkg_url, ".")
+        os.mkdir(name)
+        Repo.clone_from(pkg_url, name)
         extract.gextract(name)
         print(f"[+] Packet '{name}' Installed [+]")
     elif protocol=="http":
         urlretrieve(pkg_url, name+".zip")
         extract.extract(name)
+    if name in os.listdir("."):
+        shutil.rmtree(name)
+    user_root = os.path.expanduser("~")
+    os.chdir(user_root)
+    with open("installed.json", "rw") as f:
+        installed_list = json.load(f)
+        installed_list.append(name)
+        json.dump(installed_list, f)

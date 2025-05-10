@@ -8,9 +8,9 @@ import pathlib
 from zynk_lite import interpreter
 
 def extract(name):
-    current = os.chown()
+    current = os.getcwd()
     user_root = os.path.expanduser("~")
-    packet_path = pathlib.Path.joinpath(user_root, ".conduitpkg", name)
+    packet_path = os.path.join(user_root, ".conduitpkg", name)
     shutil.unpack_archive(name+".zip", packet_path)
     os.chdir(packet_path)
     intp = interpreter.ZynkLInterpreter()
@@ -19,9 +19,9 @@ def extract(name):
     os.remove(name+".zip")
 
 def gextract(name):
-    current = os.chown()
+    current = os.getcwd()
     user_root = os.path.expanduser("~")
-    packet_path = pathlib.Path.joinpath(user_root, ".conduitpkg", name)
+    packet_path = os.path.join(user_root, ".conduitpkg", name)
     shutil.copytree(name, packet_path)
     os.chdir(packet_path)
     intp = interpreter.ZynkLInterpreter()

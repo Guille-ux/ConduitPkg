@@ -17,7 +17,7 @@ def compress():
         os.mkdir("dist")
     except Exception:
         pass
-    dist_path=pathlib.Path.joinpath("dist", name)
+    dist_path=os.path.join("dist", name)
     if name in os.listdir("dist"):
         shutil.rmtree(dist_path)
     os.mkdir(dist_path)

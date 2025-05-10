@@ -9,7 +9,7 @@ import pathlib
 
 def get_repos():
     user_root = os.path.expanduser("~")
-    repos_lists_path = pathlib.Path.joinpath(user_root, ".conduitpkg", "list.json")
+    repos_lists_path = os.path.join(user_root, ".conduitpkg", "list.json")
     with open(repos_lists_path, "r") as f:
         repos_lists = json.load(f)
     return repos_lists
@@ -22,6 +22,6 @@ def is_in_repo(repo_url, name):
 
 def get_pkg_list(repo_url):
     with urlopen(repo_url) as request:
-        response = request.decode()
+        response = request.read().decode("utf-8")
     data = json.loads(response)
     return data

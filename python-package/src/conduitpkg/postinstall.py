@@ -8,13 +8,13 @@ import os
 def post_install():
     user_root = os.path.expanduser("~")
     os.chdir(user_root)
-    if ".conduitpkg" in os.listdir(""):
+    if ".conduitpkg" in os.listdir("."):
         return
     os.mkdir(".conduitpkg")
     os.chdir(".conduitpkg")
     with open("installed.json", "w") as f:
-        json.dump({}, f)
+        json.dump([], f)
     with open("entries.json", "w") as f:
         json.dump({}, f)
     with open("list.json", "w") as f:
-        json.dump({}, f)
+        json.dump([], f)
