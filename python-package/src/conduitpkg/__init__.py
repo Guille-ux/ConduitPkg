@@ -8,3 +8,4 @@ from . import cli
 from . import packaging
 from . import templates
 from . import gui
+from . import install
