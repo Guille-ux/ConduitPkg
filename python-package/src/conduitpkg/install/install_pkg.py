@@ -21,3 +21,5 @@ def get_packet(name):
             print(f"[+] Package {name} is in {repo} [+]")
     if len(where) > 1:
         print("[!] Warning: this is i various repos [!]")
+    # tengo que hacer la parte de descarga del paquete
+    # primero averiguar donde esta el paquete, y despues descargarlo
