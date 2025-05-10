@@ -26,10 +26,16 @@ def get_packet(name, protocol):
         print("[!] Packet doesn't exist [!]")
     elif len(where) > 1:
         print("[!] Warning: this is i various repos [!]")
-        # añadir manejo para elegir
-        return
+        for rep in where:
+            print(f"Repo: {rep} ")
+            opt=input(f"Is {name} pkg from this repo? (y/n) >>> ")
+            if opt=="y":
+                repo=rep
+                break
+            elif opt=="n":
+                pass
     else:
-        repo = repos_list[0]
+        repo = where[0]
     pkg_list = search.get_pkg_list(repo)
     pkg_url = pkg_list[name]
     # tengo que hacer la parte de descarga del paquete
