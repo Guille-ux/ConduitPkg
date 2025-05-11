@@ -31,13 +31,13 @@ def main():
         advanced.init_pkg(sys.argv[2])
     elif sys.argv[1]=="repo":
         if sys.argv[2]=="add":
-            advanced.add_repo()
+            advanced.add_repo(sys.argv[3])
         elif sys.argv[2]=="remove":
-            advanced.remove_repo()
+            advanced.remove_repo(sys.argv[3])
         elif sys.argv[2]=="add_local":
-            advanced.add_repo(True)
+            advanced.add_repo(sys.argv[3], True)
         elif sys.argv[2]=="remove_local":
-            advanced.remove_repo(True)
+            advanced.remove_repo(sys.argv[3], True)
     elif sys.argv[1]=="compress":
         advanced.compress(sys.argv[2])
     elif sys.argv[1]=="extract":
@@ -46,4 +46,24 @@ def main():
         advanced.extract(sys.argv[2], True)
     elif sys.argv[1]=="help":
         print("[+] ----- Help Message ----- [+]")
-        print("[*] Nothing Already [*]")
+        print("[*] run                      [*]")
+        print("[*] run_local                [*]")
+        print("[*] get local_repos          [*]")
+        print("[*] get repos                [*]")
+        print("[*] get local_pkg            [*]")
+        print("[*] get pkg                  [*]")
+        print("[*] local_post_install       [*]")
+        print("[*] post_install             [*]")
+        print("[*] init                     [*]")
+        print("[*] repo add                 [*]")
+        print("[*] repo remove              [*]")
+        print("[*] repo add_local           [*]")
+        print("[*] repo remove_local        [*]")
+        print("[*] compress                 [*]")
+        print("[*] extract                  [*]")
+        print("[*] local_extract            [*]")
+        print("[*] help                     [*]")
+        print("[+] --- Help Message End --- [+]")
+    else:
+        print("[!] Command Not Found    [!]")
+        print("[*] Try with 'cpkg help' [*]")
