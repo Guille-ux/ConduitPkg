@@ -23,3 +23,9 @@ flowchart TD
     n1["package.json"] --> n4["version"] & n5["name"] & n6["author"] & n7["author_email"] & n8["mantainer_email"] & n9["license"] & n3["entries"] & n2["dependencies"]
     n1@{ shape: text}
 ```
+
+## API Documentation
+
+|Function|Purpose|Use|
+|-|-|-|
+| | | |
