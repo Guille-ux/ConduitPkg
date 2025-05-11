@@ -41,3 +41,11 @@ flowchart TD
 |```conduitpkg.api.advanced.add_repo(name, local=False)```|Adds a repo to the list|
 |```conduitpkg.api.advanced.remove_repo(name, local=False)```|Removes a repo from the list|
 |```conduitpkg.api.advanced.get_repos(local=False)```|Return the list of repos|
+
+### Examples
+
+```python
+from conduitpkg.api import advanced as cpkg
+
+cpkg.post_install() # adds a local env for ConduitPkg
+```
