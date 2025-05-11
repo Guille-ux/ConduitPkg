@@ -12,8 +12,8 @@ def new(name):
     year = datetime.datetime.now().year
     os.mkdir(name)
     os.chdir(name)
-    git.Repo.init(".")
-    config_reader = git.Repo.config_reader()
+    repo = git.Repo.init(".")
+    config_reader = repo.config_reader()
     username = config_reader.get_value("user", "name")
     email = config_reader.get_value("user", "email")
     copyright_header = f"{name} Copyright (c) {year} {username} <{email}>"
@@ -22,7 +22,7 @@ def new(name):
     os.mkdir("src")
     with open("builder.zl", "w") as f:
         f.write(builder.template)
-    with open("LICENSE.txt") as f:
+    with open("LICENSE.txt", "w") as f:
         f.write(gpl_license.template)
         f.write(copyright_header)
     with open("README.md", "w") as f:
