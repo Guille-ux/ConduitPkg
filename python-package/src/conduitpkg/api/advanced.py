@@ -7,6 +7,7 @@ from .. import postinstall
 from .. import packaging
 from .. import builder
 import shutil
+import json
 import os
 
 def install_pkg(name, local=False, protocol="http"):
@@ -102,3 +103,68 @@ def init_pkg(name):
         print("[!] Packet Already Exists [!]")
         return
     builder.new_packet(name)
+
+def add_repo(name, local=False):
+    if local:
+        print("[+] Adding Repo Locally [+]")
+        os.chdir(".conduitpkg")
+        with open("list.json", "wr") as f:
+            actual = json.load(f)
+            if name not in actual:
+                actual.append(name)
+                json.dump(actual, f)
+        os.chdir("..")
+    elif not local:
+        print("[+] Adding Repo Globally [+]")
+        current = os.getcwd()
+        os.chdir(os.path.join(os.path.expanduser("~"), ".conduitpkg"))
+        with open("list.json", "wr") as f:
+            actual = json.load(f)
+            if name not in actual:
+                actual.append(name)
+                json.dump(actual, f)
+        os.chdir(current)
+    else:
+        print("[!] Unknown Env [!]")
+
+def remove_repo(name, local=False):
+    if local:
+        print("[+] Removing Repo Locally [+]")
+        os.chdir(".conduitpkg")
+        with open("list.json", "wr") as f:
+            actual = json.load(f)
+            if name in actual:
+                actual.remove(name)
+                json.dump(actual, f)
+        os.chdir("..")
+    elif not local:
+        print("[+] Removing Repo Globally [+]")
+        current = os.getcwd()
+        os.chdir(os.path.join(os.path.expanduser("~"), ".conduitpkg"))
+        with open("list.json", "wr") as f:
+            actual = json.load(f)
+            if name in actual:
+                actual.remove(name)
+                json.dump(actual, f)
+        os.chdir(current)
+    else:
+        print("[!] Unknown Env [!]")
+
+def get_repos(name, local=False):
+    if local:
+        print("[+] Listing Local Repos [+]")
+        os.chdir(".conduitpkg")
+        with open("list.json", "r") as f:
+            actual = json.load(f)
+        os.chdir("..")
+        return actual
+    elif not local:
+        print("[+] Listing Global Repos [+]")
+        current = os.getcwd()
+        os.chdir(os.path.join(os.path.expanduser("~"), ".conduitpkg"))
+        with open("list.json", "r") as f:
+            actual = json.load(f)
+        os.chdir(current)
+        return actual
+    else:
+        print("[!] Unknown Env [!]")
