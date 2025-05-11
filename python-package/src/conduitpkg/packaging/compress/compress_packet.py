@@ -5,7 +5,6 @@
 import shutil
 import os
 import json
-import pathlib
 
 def compress():
     try:
