@@ -18,3 +18,15 @@ def post_install():
         json.dump({}, f)
     with open("list.json", "w") as f:
         json.dump([], f)
+
+def local_post_install():
+    if ".conduitpkg" in os.listdir("."):
+        return
+    os.mkdir(".conduitpkg")
+    os.chdir(".conduitpkg")
+    with open("installed.json", "w") as f:
+        json.dump([], f)
+    with open("entries.json", "w") as f:
+        json.dump({}, f)
+    with open("list.json", "w") as f:
+        json.dump([], f)

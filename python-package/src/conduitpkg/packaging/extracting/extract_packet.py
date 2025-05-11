@@ -28,3 +28,23 @@ def gextract(name):
     intp.eval_file("builder.zl")
     os.chdir(current)
     shutil.rmtree(name)
+
+def local_extract(name):
+    current = os.getcwd()
+    packet_path = os.path.join(".conduitpkg", name)
+    shutil.unpack_archive(name+".zip", packet_path)
+    os.chdir(packet_path)
+    intp = interpreter.ZynkLInterpreter()
+    intp.eval_file("builder.zl")
+    os.chdir(current)
+    os.remove(name+".zip")
+
+def local_gextract(name):
+    current = os.getcwd()
+    packet_path = os.path.join(".conduitpkg", name)
+    shutil.copytree(name, packet_path)
+    os.chdir(packet_path)
+    intp = interpreter.ZynkLInterpreter()
+    intp.eval_file("builder.zl")
+    os.chdir(current)
+    shutil.rmtree(name)
