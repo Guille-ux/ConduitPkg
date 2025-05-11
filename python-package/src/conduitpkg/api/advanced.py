@@ -17,6 +17,14 @@ def install_pkg(name, local=False, protocol="http"):
     else:
         print("[!] Unknown Method [!]")
 
+def run_entry(name, local=False):
+    if local:
+        local_exec_entry(name)
+    elif not local:
+        exec_entry(name)
+    else:
+        print("[!] Unknown Method [!]")
+
 def advanced_install(name, protocol="http"):
     print("[+] Installing Globally [+]")
     install.get_pkg.get_packet(name, protocol)
