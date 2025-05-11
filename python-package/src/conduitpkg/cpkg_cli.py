@@ -2,4 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from . import parsertoapi as parser
+from . import cli
+
+def main():
+    cli.parser.main()

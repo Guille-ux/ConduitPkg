@@ -150,7 +150,7 @@ def remove_repo(name, local=False):
     else:
         print("[!] Unknown Env [!]")
 
-def get_repos(name, local=False):
+def get_repos(local=False):
     if local:
         print("[+] Listing Local Repos [+]")
         os.chdir(".conduitpkg")
