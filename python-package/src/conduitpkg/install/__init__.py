@@ -5,3 +5,4 @@
 from . import install_pkg as get_pkg
 from . import dependencies
 from . import search_packet as search_pkg
+from . import entries
