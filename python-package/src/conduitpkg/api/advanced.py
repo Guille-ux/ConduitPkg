@@ -28,11 +28,13 @@ def run_entry(name, local=False):
 def advanced_install(name, protocol="http"):
     print("[+] Installing Globally [+]")
     install.get_pkg.get_packet(name, protocol)
+    print("[+] Resolving Dependencies Globally [+]")
     install.dependencies.resolve(name)
 
 def local_advanced_install(name, protocol="http"):
     print("[+] Installing Locally [+]")
     install.get_pkg.local_get_packet(name, protocol)
+    print("[+] Resolving Dependencies Locally [+]")
     install.dependencies.local_resolve(name)
 
 def exec_entry(command):
