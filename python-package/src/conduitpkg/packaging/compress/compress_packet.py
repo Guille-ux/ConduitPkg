@@ -7,6 +7,7 @@ import os
 import json
 
 def compress():
+    current = os.getcwd()
     try:
         with open("package.json", "r") as f:
             name = json.load(f)["name"]
@@ -16,13 +17,16 @@ def compress():
         os.mkdir("dist")
     except Exception:
         pass
-    dist_path=os.path.join("dist", name)
-    if name in os.listdir("dist"):
-        shutil.rmtree(dist_path)
-    os.mkdir(dist_path)
-    shutil.copy("package.json", dist_path)
-    shutil.copytree("src", dist_path)
-    shutil.copy("builder.zl", dist_path)
-    shutil.copy("LICENSE.txt", dist_path)
-    shutil.copy("README.md", dist_path)
-    shutil.make_archive(dist_path, "zip", dist_path+".zip")
+    os.chdir("dist")
+    dist_path = os.path.join("dist", name)
+    if name in os.listdir("."):
+        shutil.rmtree(name)
+    os.mkdir(name)
+    os.chdir("..")
+    shutil.copy("package.json", os.path.join(dist_path, "package.json"))
+    shutil.copytree("src", os.path.join(dist_path, "src"))
+    shutil.copy("builder.zl", os.path.join(dist_path, "builder.zl"))
+    shutil.copy("LICENSE.txt", os.path.join(dist_path, "LICENSE.txt"))
+    shutil.copy("README.md", os.path.join(dist_path, "README.md"))
+    shutil.make_archive(dist_path, "zip", dist_path)
+    os.chdir(current)

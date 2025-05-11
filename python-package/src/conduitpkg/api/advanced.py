@@ -60,7 +60,7 @@ def compress(dir):
     os.chdir(dir)
     packaging.comp.compress.compress()
     os.chdir("..")
-    shutil.copytree(os.path.join(dir, "dist"), ".")
+    shutil.copytree(os.path.join(dir, "dist"), "dist")
     shutil.rmtree(os.path.join(dir, "dist"))
 
 def extract(name, local=False, zipped=True):
