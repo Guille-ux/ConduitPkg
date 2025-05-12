@@ -64,7 +64,7 @@ def get_packet(name, protocol):
 def local_get_packet(name, protocol):
     print("[+] Searching Packet [+]")
     print("[+] Listing Repos [+]")
-    repos_list = search.get_repos()
+    repos_list = search.get_local_repos()
     where = []
     print("[+] Searching on repos [+]")
     for repo in repos_list:

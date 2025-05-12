@@ -14,6 +14,12 @@ def get_repos():
         repos_lists = json.load(f)
     return repos_lists
 
+def get_local_repos():
+    repos_lists_path = os.path.join(".conduitpkg", "list.json")
+    with open(repos_lists_path, "r") as f:
+        repos_lists = json.load(f)
+    return repos_lists
+
 def is_in_repo(repo_url, name):
     data = get_pkg_list(repo_url)
     if name in data.keys():
