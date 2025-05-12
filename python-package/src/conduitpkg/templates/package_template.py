@@ -9,6 +9,6 @@ template = { # there isn't builder_type because this runs the builder with zynk-
     "author_email":"",
     "mantainer_email":"",
     "license":"GPL-3.0-or-later",
-    "depencies":[],
+    "dependencies":[],
     "entries":{},
 }
