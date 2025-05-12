@@ -12,6 +12,7 @@ from ..packaging.extracting import extract
 import shutil
 
 def get_packet(name, protocol):
+    current = os.getcwd()
     print("[+] Searching Packet [+]")
     print("[+] Listing Repos [+]")
     repos_list = search.get_repos()
@@ -57,6 +58,7 @@ def get_packet(name, protocol):
         installed_list = json.load(f)
         installed_list.append(name)
         json.dump(installed_list, f)
+    os.chdir(current)
 
 
 
@@ -107,3 +109,4 @@ def local_get_packet(name, protocol):
         installed_list = json.load(f)
         installed_list.append(name)
         json.dump(installed_list, f)
+    os.chdir("..")
