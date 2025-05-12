@@ -34,9 +34,10 @@ def export_entry(name, entry):
     current = os.getcwd()
     cpkg_root = ".conduitpkg"
     os.chdir(cpkg_root)
-    with open("entries.json", "w+") as f:
+    with open("entries.json", "r") as f:
         entries = json.load(f)
         entries[name] = entry
+    with open("entries.json", "w") as f:
         json.dump(entries, f)
     os.chdir(current)
 
@@ -44,8 +45,9 @@ def local_export_entry(name, entry):
     current = os.getcwd()
     cpkg_root = ".conduitpkg"
     os.chdir(cpkg_root)
-    with open("entries.json", "w+") as f:
+    with open("entries.json", "r") as f:
         entries = json.load(f)
         entries[name] = entry
+    with open("entries.json", "w") as f:
         json.dump(entries, f)
     os.chdir(current)

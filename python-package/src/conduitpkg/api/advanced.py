@@ -108,21 +108,23 @@ def add_repo(name, local=False):
     if local:
         print("[+] Adding Repo Locally [+]")
         os.chdir(".conduitpkg")
-        with open("list.json", "w+") as f:
+        with open("list.json", "r") as f:
             actual = json.load(f)
             if name not in actual:
                 actual.append(name)
+        with open("list.json", "w") as f:
                 json.dump(actual, f)
         os.chdir("..")
     elif not local:
         print("[+] Adding Repo Globally [+]")
         current = os.getcwd()
         os.chdir(os.path.join(os.path.expanduser("~"), ".conduitpkg"))
-        with open("list.json", "w+") as f:
+        with open("list.json", "r") as f:
             actual = json.load(f)
             if name not in actual:
                 actual.append(name)
-                json.dump(actual, f)
+        with open("list.json", "w") as f:
+            json.dump(actual, f)
         os.chdir(current)
     else:
         print("[!] Unknown Env [!]")
@@ -131,21 +133,23 @@ def remove_repo(name, local=False):
     if local:
         print("[+] Removing Repo Locally [+]")
         os.chdir(".conduitpkg")
-        with open("list.json", "w+") as f:
+        with open("list.json", "r") as f:
             actual = json.load(f)
             if name in actual:
                 actual.remove(name)
-                json.dump(actual, f)
+        with open("list.json", "w") as f:
+            json.dump(actual, f)
         os.chdir("..")
     elif not local:
         print("[+] Removing Repo Globally [+]")
         current = os.getcwd()
         os.chdir(os.path.join(os.path.expanduser("~"), ".conduitpkg"))
-        with open("list.json", "w+") as f:
+        with open("list.json", "r") as f:
             actual = json.load(f)
             if name in actual:
                 actual.remove(name)
-                json.dump(actual, f)
+        with open("list.json", "w") as f:
+            json.dump(actual, f)
         os.chdir(current)
     else:
         print("[!] Unknown Env [!]")
