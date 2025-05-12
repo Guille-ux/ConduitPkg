@@ -67,5 +67,7 @@ def entry_mng():
 def local_entry_mng():
     with open("package.json", "r") as f:
         package_file = json.load(f)
+    os.chdir("..")
+    os.chdir("..")
     for name, entry in package_file["entries"].items():
         entries.local_export_entry(name, entry)

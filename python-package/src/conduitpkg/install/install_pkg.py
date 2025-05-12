@@ -64,6 +64,7 @@ def get_packet(name, protocol):
 
 
 def local_get_packet(name, protocol):
+    current=os.getcwd()
     print("[+] Searching Packet [+]")
     print("[+] Listing Repos [+]")
     repos_list = search.get_local_repos()
@@ -105,8 +106,9 @@ def local_get_packet(name, protocol):
         shutil.rmtree(name)
     user_root = ".conduitpkg"
     os.chdir(user_root)
-    with open("installed.json", "r+") as f:
+    with open("installed.json", "r") as f:
         installed_list = json.load(f)
+    with open("installed.json", "w") as f:
         installed_list.append(name)
         json.dump(installed_list, f)
-    os.chdir("..")
+    os.chdir(current)
