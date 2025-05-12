@@ -41,6 +41,7 @@ flowchart TD
 |```conduitpkg.api.advanced.add_repo(name, local=False)```|Adds a repo to the list|
 |```conduitpkg.api.advanced.remove_repo(name, local=False)```|Removes a repo from the list|
 |```conduitpkg.api.advanced.get_repos(local=False)```|Return the list of repos|
+|```conduitpkg.api.advanced.uninstall_pkg(name, local=False)```|Uninstall a packet|
 
 ### Examples
 

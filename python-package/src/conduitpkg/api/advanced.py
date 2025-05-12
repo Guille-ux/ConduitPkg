@@ -49,7 +49,7 @@ def exec_entry(command):
 
 def local_exec_entry(command):
     print("[+] Running Local Entry [+]")
-    entry=install.entries.get_entry(command)
+    entry=install.entries.local_get_entry(command)
     cpkg_root = ".conduitpkg"
     os.chdir(cpkg_root)
     os.system(entry)
@@ -174,3 +174,34 @@ def get_repos(local=False):
         return actual
     else:
         print("[!] Unknown Env [!]")
+
+def uninstall_pkg(name, local=False):
+    current = os.getcwd()
+    if local:
+        print("[+] Uninstalling at Local [+]")
+        os.chdir(".conduitpkg")
+    elif not local:
+        print("[+] Uninstalling at Global [+]")
+        os.chdir(os.path.join(os.path.expanduser("~"), ".conduitpkg"))
+    else:
+        print("[!] Unknown Env [!]")
+        return
+    print("[+] Removing from installed.json [+]")
+    with open("installed.json", "r") as f:
+        installed_pkgs = json.load(f)
+    installed_pkgs.remove(name)
+    with open("installed.json", "w") as f:
+        json.dump(installed_pkgs, f)
+    print("[+] Reading Packet Entries [+]")
+    with open(os.path.join(name, "package.json"), "r") as f:
+        entries = json.load(f)["entries"]
+    with open("entries.json", "r") as f:
+        fentries = json.load(f)
+    print("[+] Removing Entries [+]")
+    for k in entries.keys():
+        if k in fentries.keys():
+            del fentries[k]
+    with open("entries.json", "w") as f:
+        json.dump(fentries, f)
+    print("[+] Returning to Working Directory [+]")
+    os.chdir(current)
