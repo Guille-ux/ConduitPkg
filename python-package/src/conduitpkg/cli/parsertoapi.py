@@ -54,6 +54,11 @@ def main():
             advanced.uninstall_pkg(sys.argv[2], True)
         else:
             advanced.uninstall_pkg(sys.argv[2])
+    elif sys.argv[1]=="info":
+        if "--local" in sys.argv:
+            advanced.print_pkg_info(sys.argv[2], True)
+        else:
+            advanced.print_pkg_info(sys.argv[2])
     elif sys.argv[1]=="help":
         print("[+] ----- Help Message ----- [+]")
         print("[*] run                      [*]")
@@ -67,6 +72,7 @@ def main():
         print("[*] extract                  [*]")
         print("[*] uninstall                [*]")
         print("[*] help                     [*]")
+        print("[*] info                     [*]")
         print("[+] --- Help Message End --- [+]")
     else:
         print("[!] Command Not Found    [!]")

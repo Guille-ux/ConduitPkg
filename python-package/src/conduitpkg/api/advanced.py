@@ -205,3 +205,30 @@ def uninstall_pkg(name, local=False):
         json.dump(fentries, f)
     print("[+] Returning to Working Directory [+]")
     os.chdir(current)
+
+def print_pkg_info(pkg, local=False):
+    current = os.getcwd()
+    if local:
+        print("[+] Searching Package at Local   [+]")
+        pkg_root = os.path.join(".conduitpkg", pkg)
+    elif not local:
+        print("[+] Searching Package at Global  [+]")
+        pkg_root = os.path.join(os.path.expanduser("~"), ".conduitpkg", pkg)
+    else:
+        print("[!] Unknown Env [!]")
+        return
+    os.chdir(pkg_root)
+    with open("package.json") as f:
+        pkg_info = json.load(f)
+    os.chdir(current)
+    print("[+] ------------ BEGIN OF INFORMATION ----------------- [+]")
+    print(f"[+] Package {pkg} Information                           [+]")
+    print(f"[+] Version : {pkg_info["version"]}                     [+]")
+    print(f"[+] Author : {pkg_info["author"]}                       [+]")
+    print(f"[+] Author Email : {pkg_info["author_email"]}           [+]")
+    print(f"[+] Maintainer Email : {pkg_info["mantainer_email"]}    [+]")
+    print(f"[+] License : {pkg_info["license"]}                     [+]")
+    print(f"[+] Dependencies : {pkg_info["dependencies"]}           [+]")
+    print(f"[+] Entries : {pkg_info["entries"]}                     [+]")
+    print("[-] ------------ END OF INFORMATION ------------------- [+]")
+
