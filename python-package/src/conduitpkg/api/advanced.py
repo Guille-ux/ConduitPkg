@@ -189,7 +189,7 @@ def uninstall_pkg(name, local=False):
     print("[+] Removing from installed.json [+]")
     with open("installed.json", "r") as f:
         installed_pkgs = json.load(f)
-    installed_pkgs.remove(name)
+    installed_pkgs.pop(installed_pkgs.index(name))
     with open("installed.json", "w") as f:
         json.dump(installed_pkgs, f)
     print("[+] Reading Packet Entries [+]")
