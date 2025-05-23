@@ -189,6 +189,9 @@ def uninstall_pkg(name, local=False):
     print("[+] Removing from installed.json [+]")
     with open("installed.json", "r") as f:
         installed_pkgs = json.load(f)
+    print("[ --- INSTALLED PKG'S --- ]")
+    for i, pkg in enumerate(installed_pkgs):
+        print(f" {i+1}/{len(installed_pkgs)} : {pkg}")
     installed_pkgs.pop(installed_pkgs.index(name))
     with open("installed.json", "w") as f:
         json.dump(installed_pkgs, f)
