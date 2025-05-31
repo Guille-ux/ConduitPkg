@@ -223,7 +223,7 @@ def print_pkg_info(pkg, local=False):
         return
     os.chdir(pkg_root)
     with open("package.json") as f:
-        pkg_info = ison.load(f)
+        pkg_info = json.load(f)
     os.chdir(current)
     print("[+] ------------ BEGIN OF INFORMATION -------------- [+]")
     print(f"[+] Package {pkg} Information                        [+]")

@@ -54,9 +54,10 @@ def get_packet(name, protocol):
         shutil.rmtree(name)
     user_root = os.path.join(os.path.expanduser("~"), ".conduitpkg")
     os.chdir(user_root)
-    with open("installed.json", "r+") as f:
+    with open("installed.json", "r") as f:
         installed_list = json.load(f)
         installed_list.append(name)
+    with open("installed.json", "w") as f:
         json.dump(installed_list, f)
     os.chdir(current)
 
