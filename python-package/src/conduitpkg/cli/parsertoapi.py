@@ -11,7 +11,7 @@ def main():
     local=False
     if "--local" in sys.argv:
         local = True
-    sys.argv.remove("--local")
+        sys.argv.remove("--local")
     if sys.argv[1]=="run":
         advanced.run_entry(sys.argv[2], local)
     elif sys.argv[1]=="get":
