@@ -235,7 +235,7 @@ def print_pkg_info(pkg, local=False):
     print("[+] ------------ BEGIN OF INFORMATION -------------- [+]")
     print(f"[+] Package {pkg} Information                        [+]")
     print(f"[+] Version : {pkg_version}                     [+]")
-    print(f"[+] Author : {pkg_author]}                       [+]")
+    print(f"[+] Author : {pkg_author}                       [+]")
     print(f"[+] Author Email : {pkg_author_email}           [+]")
     print(f"[+] Maintainer Email : {pkg_mantainer}    [+]")
     print(f"[+] License : {pkg_license}                     [+]")
