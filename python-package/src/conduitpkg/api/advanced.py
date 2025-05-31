@@ -225,15 +225,22 @@ def print_pkg_info(pkg, local=False):
     with open("package.json") as f:
         pkg_info = json.load(f)
     os.chdir(current)
+    pkg_version = pkg_info[version]
+    pkg_author = pkg_info[author]
+    pkg_author_email = pkg_info[author_email]
+    pkg_mantainer = pkg_info[mantainer_email]
+    pkg_license = pkg_info[license]
+    pkg_dependencies = pkg_info[dependencies]
+    pkg_entries = pkg_info[entries]
     print("[+] ------------ BEGIN OF INFORMATION -------------- [+]")
     print(f"[+] Package {pkg} Information                        [+]")
-    print(f"[+] Version : {pkg_info[version]}                     [+]")
-    print(f"[+] Author : {pkg_info[author]}                       [+]")
-    print(f"[+] Author Email : {pkg_info[author_email]}           [+]")
-    print(f"[+] Maintainer Email : {pkg_info[mantainer_email]}    [+]")
-    print(f"[+] License : {pkg_info[licenss]}                     [+]")
-    print(f"[+] Dependencies : {pkg_info[dependencies]}           [+]")
-    print(f"[+] Entries : {pkg_info[entries]}                     [+]")
+    print(f"[+] Version : {pkg_version}                     [+]")
+    print(f"[+] Author : {pkg_author]}                       [+]")
+    print(f"[+] Author Email : {pkg_author_email}           [+]")
+    print(f"[+] Maintainer Email : {pkg_mantainer}    [+]")
+    print(f"[+] License : {pkg_license}                     [+]")
+    print(f"[+] Dependencies : {pkg_dependencies}           [+]")
+    print(f"[+] Entries : {pkg_entries}                     [+]")
     print("[-] ------------ END OF INFORMATION ---------------- [+]")
 def list_pkgs(local=False):
     if local:
