@@ -6,59 +6,40 @@ import sys
 from ..api import advanced
 
 def main():
+    if len(sys.argv) < 1:
+        sys.argv.append("help")
+    local=False
+    if "--local" in sys.argv:
+        local = True
+    sys.argv.remove("--local")
     if sys.argv[1]=="run":
-        if "--local" in sys.argv:
-            advanced.run_entry(sys.argv[2], True)
-        else:
-            advanced.run_entry(sys.argv[2])
+        advanced.run_entry(sys.argv[2], local)
     elif sys.argv[1]=="get":
         if sys.argv[2]=="repos":
-            if "--local" in sys.argv:
-                repos=advanced.get_repos(True)
-            else:
-                repos=advanced.get_repos()
+            repos=advanced.get_repos(local)
             for repo in repos:
                 print(f"[+] Repo: {repo} [+]")
         elif sys.argv[2]=="pkg":
-            if "--local" in sys.argv:
-                advanced.install_pkg(sys.argv[3], True)
-            else:
-                advanced.install_pkg(sys.argv[3])
+            advanced.install_pkg(sys.argv[3], local)
     elif sys.argv[1]=="post_install":
-        if not "--local" in sys.argv:
-            advanced.post_install(False)
-        else:
-            advanced.post_install()
+        advanced.post_install(!local)
     elif sys.argv[1]=="init":
         advanced.init_pkg(sys.argv[2])
     elif sys.argv[1]=="repo":
         if sys.argv[2]=="add":
-            if "--local" in sys.argv:
-                advanced.add_repo(sys.argv[3], True)
-            else:
-                advanced.add_repo(sys.argv[3])
+            advanced.add_repo(sys.argv[3], local)
         elif sys.argv[2]=="remove":
-            if "--local" in sys.argv:
-                advanced.remove_repo(sys.argv[3], True)
-            else:
-                advanced.remove_repo(sys.argv[3])
+            advanced.remove_repo(sys.argv[3], local)
     elif sys.argv[1]=="compress":
         advanced.compress(sys.argv[2])
     elif sys.argv[1]=="extract":
-        if "--local" in sys.argv:
-            advanced.extract(sys.argv[2], True)
-        else:
-            advanced.extract(sys.argv[2])
+        advanced.extract(sys.argv[2], local)
     elif sys.argv[1]=="uninstall":
-        if "--local" in sys.argv:
-            advanced.uninstall_pkg(sys.argv[2], True)
-        else:
-            advanced.uninstall_pkg(sys.argv[2])
+        advanced.uninstall_pkg(sys.argv[2], local)
     elif sys.argv[1]=="info":
-        if "--local" in sys.argv:
-            advanced.print_pkg_info(sys.argv[2], True)
-        else:
-            advanced.print_pkg_info(sys.argv[2])
+        advanced.print_pkg_info(sys.argv[2], local)
+    elif sys.argv[1]=="list":
+        advanced.list_pkgs(local)
     elif sys.argv[1]=="help":
         print("[+] ----- Help Message ----- [+]")
         print("[*] run                      [*]")

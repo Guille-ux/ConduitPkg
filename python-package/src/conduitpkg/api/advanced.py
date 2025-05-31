@@ -206,6 +206,7 @@ def uninstall_pkg(name, local=False):
             del fentries[k]
     with open("entries.json", "w") as f:
         json.dump(fentries, f)
+    shutil.rmtree(name)
     print("[+] Returning to Working Directory [+]")
     os.chdir(current)
 
@@ -222,7 +223,7 @@ def print_pkg_info(pkg, local=False):
         return
     os.chdir(pkg_root)
     with open("package.json") as f:
-        pkg_info = json.load(f)
+        pkg_info = ison.load(f)
     os.chdir(current)
     print("[+] ------------ BEGIN OF INFORMATION -------------- [+]")
     print(f"[+] Package {pkg} Information                        [+]")
@@ -234,4 +235,17 @@ def print_pkg_info(pkg, local=False):
     print(f"[+] Dependencies : {pkg_info.dependencies}           [+]")
     print(f"[+] Entries : {pkg_info.entries}                     [+]")
     print("[-] ------------ END OF INFORMATION ---------------- [+]")
+def list_pkgs(local=False):
+    if local:
+        print("[+] Listing Packets Locally... [+]")
+        root=os.path.join(".conduitpkg", "installed.json")
+    else:
+        print("[+] Listing Packets Globally... [+]")
+        root=os.path.join(os.path.expanduser("~"), ".conduitpkg", "installed.json")
+    with open(root, "r") as f:
+        installed_pkgs=json.load(f)
+    print("[+] Installed Packets [+]")
+    for packet in installed_pkgs:
+        print(f"[+] {packet} [+]")
+
 

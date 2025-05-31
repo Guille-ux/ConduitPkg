@@ -56,7 +56,7 @@ def local_gextract(name):
     shutil.rmtree(name)
 
 
-# esto evitara un poco de dupliación de código
+# esto evitara un poco de duplicación de código
 
 def entry_mng():
     with open("package.json", "r") as f:

@@ -32,7 +32,7 @@ def local_get_entry(name):
 
 def export_entry(name, entry):
     current = os.getcwd()
-    cpkg_root = ".conduitpkg"
+    cpkg_root = os.path.join(os.path.expanduser("~"), ".conduitpkg")
     os.chdir(cpkg_root)
     with open("entries.json", "r") as f:
         entries = json.load(f)
