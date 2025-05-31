@@ -42,8 +42,8 @@ flowchart TD
 |```conduitpkg.api.advanced.remove_repo(name, local=False)```|Removes a repo from the list|
 |```conduitpkg.api.advanced.get_repos(local=False)```|Return the list of repos|
 |```conduitpkg.api.advanced.uninstall_pkg(name, local=False)```|Uninstall a packet|
-|```conduitpkg.api.advanced.print_pkg_info(pkg, local=False)```|prints info of a package|
-
+|```conduitpkg.api.advanced.print_pkg_info(pkg, local=False)```|Prints info of a package|
+|```conduitpkg.api.advanced.list_pkgs(local=False)```|Prints the list of installed packages|
 ### Examples
 
 ```python
