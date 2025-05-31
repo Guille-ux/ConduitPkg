@@ -22,7 +22,11 @@ def main():
         elif sys.argv[2]=="pkg":
             advanced.install_pkg(sys.argv[3], local)
     elif sys.argv[1]=="post_install":
-        advanced.post_install(!local)
+        if local:
+            local=False
+        else:
+            local=True
+        advanced.post_install(local)
     elif sys.argv[1]=="init":
         advanced.init_pkg(sys.argv[2])
     elif sys.argv[1]=="repo":
