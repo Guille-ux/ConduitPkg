@@ -224,14 +224,17 @@ def print_pkg_info(pkg, local=False):
     os.chdir(pkg_root)
     with open("package.json") as f:
         pkg_info = json.load(f)
+    print("[*] RAW INFORMATION 	[*]")
+    print(pkg_info)
+    print("[*] END OF RAW INFORMATION 	[*]")
     os.chdir(current)
-    pkg_version = pkg_info[version]
-    pkg_author = pkg_info[author]
-    pkg_author_email = pkg_info[author_email]
-    pkg_mantainer = pkg_info[mantainer_email]
-    pkg_license = pkg_info[license]
-    pkg_dependencies = pkg_info[dependencies]
-    pkg_entries = pkg_info[entries]
+    pkg_version = pkg_info["version"]
+    pkg_author = pkg_info["author"]
+    pkg_author_email = pkg_info["author_email"]
+    pkg_mantainer = pkg_info["mantainer_email"]
+    pkg_license = pkg_info["license"]
+    pkg_dependencies = pkg_info["dependencies"]
+    pkg_entries = pkg_info["entries"]
     print("[+] ------------ BEGIN OF INFORMATION -------------- [+]")
     print(f"[+] Package {pkg} Information                        [+]")
     print(f"[+] Version : {pkg_version}                     [+]")
