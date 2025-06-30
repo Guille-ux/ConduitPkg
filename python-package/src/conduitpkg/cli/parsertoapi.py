@@ -54,6 +54,7 @@ def main():
         print("[*] uninstall                [*]")
         print("[*] help                     [*]")
         print("[*] info                     [*]")
+        print("[*] list                     [*]")
         print("[+] --- Help Message End --- [+]")
     else:
         print("[!] Command Not Found    [!]")

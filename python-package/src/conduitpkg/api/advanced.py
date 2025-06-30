@@ -66,6 +66,10 @@ def compress(dir):
     shutil.rmtree(os.path.join(dir, "dist"))
 
 def extract(name, local=False, zipped=True):
+    if not local:
+        cpkg_root=os.path.join(os.path.expanduser("~"), ".conduitpkg")
+    else:
+        cpkg_root=".conduitpkg"
     if zipped:
         print("[+] Extracting from zip... [+]")
         if local:
@@ -89,6 +93,15 @@ def extract(name, local=False, zipped=True):
     else:
         print("[!] Unknown Method [!]")
         return
+    current=os.getcwd()
+    os.chdir(cpkg_root)
+    with open("installed.json", "r") as f:
+        installed_list = json.load(f)
+        installed_list.append(name)
+    with open("installed.json", "w") as f:
+        json.dump(installed_list, f)
+    os.chdir(current)
+
     
 def post_install(local=True):
     if local:

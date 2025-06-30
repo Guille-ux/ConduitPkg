@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from git import Repo
 import os
 import json
 from . import search_packet as search
@@ -41,13 +40,13 @@ def get_packet(name, protocol):
     pkg_url = pkg_list[name]
     # tengo que hacer la parte de descarga del paquete
     # primero averiguar donde esta el paquete, y despues descargarlo
-    if protocol == "git":
-        print("[+] Cloning [+]")
-        os.mkdir(name)
-        Repo.clone_from(pkg_url, name)
-        extract.gextract(name)
-        print(f"[+] Packet '{name}' Installed [+]")
-    elif protocol=="http":
+#    if protocol == "git":
+ #       print("[+] Cloning [+]")
+  #      os.mkdir(name)
+   #     Repo.clone_from(pkg_url, name)
+    #    extract.gextract(name)
+     #   print(f"[+] Packet '{name}' Installed [+]")
+    if protocol=="http":
         urlretrieve(pkg_url, name+".zip")
         extract.extract(name)
     if name in os.listdir("."):
@@ -87,20 +86,20 @@ def local_get_packet(name, protocol):
                 repo=rep
                 break
             elif opt=="n":
-                pass
+                continue
     else:
         repo = where[0]
     pkg_list = search.get_pkg_list(repo)
     pkg_url = pkg_list[name]
     # tengo que hacer la parte de descarga del paquete
     # primero averiguar donde esta el paquete, y despues descargarlo
-    if protocol == "git":
-        print("[+] Cloning [+]")
-        os.mkdir(name)
-        Repo.clone_from(pkg_url, name)
-        extract.local_gextract(name)
-        print(f"[+] Packet '{name}' Installed [+]")
-    elif protocol=="http":
+#    if protocol == "git":
+#        print("[+] Cloning [+]")
+ #       os.mkdir(name)
+  #      Repo.clone_from(pkg_url, name)
+   #     extract.local_gextract(name)
+    #    print(f"[+] Packet '{name}' Installed [+]")
+    if protocol=="http":
         urlretrieve(pkg_url, name+".zip")
         extract.local_extract(name)
     if name in os.listdir("."):

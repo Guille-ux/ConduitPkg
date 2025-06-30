@@ -9,6 +9,10 @@ import os
 def resolve(name):
     current = os.getcwd()
     user_root = os.path.expanduser("~")
+
+    with open(os.path.join(user_root, ".conduitpkg", "installed.json")) as f:
+        installed_pkgs = json.load(f)
+
     try:
         pkg_root = os.path.join(user_root, ".conduitpkg", name)
     except Exception:
@@ -20,12 +24,17 @@ def resolve(name):
         dependencies = json.load(f)["dependencies"]
 
     for i in dependencies:
-        install.get_packet(i, "http")
+        if i not in installed_pkgs:
+            install.get_packet(i, "http")
 
     os.chdir(current)
 
 def local_resolve(name):
     current = os.getcwd()
+
+    with open(os.path.join(".conduitpkg", "installed.json")) as f:
+        installed_pkgs=json.load(f)
+
     try:
         pkg_root = os.path.join(".conduitpkg", name)
     except Exception:
@@ -36,6 +45,8 @@ def local_resolve(name):
         dependencies = json.load(f)["dependencies"]
 
     for i in dependencies:
-        install.local_get_packet(i, "http")
+        if i not in installed_pkgs:
+            install.local_get_packet(i, "http")
+
 
     os.chdir(current)

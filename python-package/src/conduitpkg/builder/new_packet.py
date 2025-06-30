@@ -5,18 +5,13 @@
 from ..templates import package, builder, gpl_license
 import os
 import json
-import git
 import datetime
 
 def new(name):
     year = datetime.datetime.now().year
     os.mkdir(name)
     os.chdir(name)
-    repo = git.Repo.init(".")
-    config_reader = repo.config_reader()
-    username = config_reader.get_value("user", "name")
-    email = config_reader.get_value("user", "email")
-    copyright_header = f"{name} Copyright (c) {year} {username} <{email}>"
+    copyright_header = f"{name} Copyright (c) {year}-present [YOU] [YOUR_EMAIL]"
     with open("package.json", "w") as f:
         json.dump(package.template, f)
     os.mkdir("src")
